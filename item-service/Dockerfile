@@ -1,10 +1,12 @@
 # BASE IMAGE
 FROM maven:3.9-amazoncorretto-17
 
-# INSTALL DEPENDENCIES
-COPY ./ /opt/service
-
+# WORKING DIR
 WORKDIR /opt/service
+
+# INSTALL DEPENDENCIES
+
+COPY ./ ./
 
 RUN mvn clean install
 
