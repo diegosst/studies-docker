@@ -9,5 +9,4 @@ WORKDIR /opt/service
 RUN mvn clean install
 
 # DEFUALT COMMAND
-WORKDIR /opt/service
 CMD ["mvn", "spring-boot:run"]
