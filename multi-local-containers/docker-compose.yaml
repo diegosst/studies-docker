@@ -1,8 +1,10 @@
 version: "3"
 services:
   redis-server:
+    container_name: "redis-server"
     image: "redis"
   node-server:
+    container_name: "node-server"
     build: .
     ports:
       - "9091:8081"
