@@ -1,30 +1,31 @@
 package br.com.diegosst.itemservice.api;
 
 import br.com.diegosst.itemservice.entity.Item;
+import br.com.diegosst.itemservice.service.ItemService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/item")
+@RequiredArgsConstructor
 public class ItemController {
 
+    private final ItemService itemService;
+
     @GetMapping
-    public List<Item> getItems() {
-        return List.of(
-               new Item("Sword", "A sturdy steel sword", 50.0),
-               new Item("Shield", "A large wooden shield", 35.0),
-               new Item("Healing Potion", "Restores 50 health points", 10.0),
-               new Item("Bow", "A sturdy longbow made of yew wood", 70.0),
-               new Item("Arrow", "A basic arrow for archery", 1.0),
-               new Item("Staff", "A powerful wooden staff", 80.0),
-               new Item("Robe", "A magical robe", 45.0),
-               new Item("Tome", "A powerful spellbook", 100.0),
-               new Item("Ring", "A ring with magical properties", 60.0),
-               new Item("Amulet", "A magical amulet", 55.0)
-        );
+    public ResponseEntity<Item> generateItem(
+            @RequestParam String code,
+            @RequestParam String name,
+            @RequestParam String description,
+            @RequestParam Double price
+    ) {
+        Item item = itemService.getItem(code, name, description, price);
+        return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
 
 }

@@ -1,0 +1,15 @@
+version: "3"
+services:
+  item-service:
+    container_name: item-service
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:8080"
+  tests:
+    container_name: item-service_tests
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: ["mvn", "test"]
