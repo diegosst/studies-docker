@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/item")
 @RequiredArgsConstructor
@@ -22,9 +24,10 @@ public class ItemController {
             @RequestParam String code,
             @RequestParam String name,
             @RequestParam String description,
-            @RequestParam Double price
+            @RequestParam Double price,
+            @RequestParam List<String> attributes
     ) {
-        Item item = itemService.getItem(code, name, description, price);
+        final Item item = itemService.getItem(code, name, description, price, attributes);
         return new ResponseEntity<>(item, HttpStatus.CREATED);
     }
 
