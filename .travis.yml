@@ -12,3 +12,16 @@ before_install:
 # RUN
 script:
   - docker run diegosst/item-service mvn test
+
+# DEPLOY
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "item-service"
+  env: "Item-service-env"
+  bucket_name: "elasticbeanstalk-us-east-2-566660023767"
+  bucket_path: "item-service"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
