@@ -31,6 +31,7 @@ public class ItemControllerTest {
         item.setName("Test Item");
         item.setDescription("This is a test item");
         item.setPrice(10.0);
+        item.setAttributes(List.of("movie", "CD"));
 
         when(itemService.getItem("1234", "Test Item", "This is a test item", 10.0, List.of("movie", "CD"))).thenReturn(item);
 
