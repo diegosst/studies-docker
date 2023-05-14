@@ -1,0 +1,14 @@
+# SUPER LEVEL PERMISSIONS
+sudo: required
+
+# INSTALL NEEDED SERVICES
+services:
+  - docker
+
+# BUILD
+before_install:
+  - docker build -t diegosst/item-service .
+
+# RUN
+script:
+  - docker run diegosst/item-service mvn test
