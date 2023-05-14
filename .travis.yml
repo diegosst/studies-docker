@@ -7,7 +7,7 @@ services:
 
 # BUILD
 before_install:
-  - docker build -f ./item-service/Dockerfile -t diegosst/item-service .
+  - docker build -f -t diegosst/item-service .
 
 # RUN
 script:
